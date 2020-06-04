@@ -37,6 +37,7 @@ while p <= (1/N):
         avg_T.append(awaiting_sum / p)
     p += 0.01
 
-
+plt.xlabel("probability")
+plt.ylabel("avg_time")
 plt.plot(probability_l, avg_T)
 plt.show()

@@ -33,5 +33,7 @@ while p <= (1/N):
     avg_T.append(collision / _sum)
     p += 0.01
 
+plt.xlabel("probability")
+plt.ylabel("packet_loss_probability")
 plt.plot(probability_l, avg_T)
 plt.show()
