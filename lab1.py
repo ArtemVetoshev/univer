@@ -7,15 +7,26 @@ p = 0
 probability_l = []
 avg_T = []
 
-
+# def send_messages(pp):
+#     i = 0
+#     messages_sum = 0
+#     while i <= N:
+#         if random.choices([1, 0], [pp, 1 - pp])[0] == 1:
+#             messages_sum += 1
+#         i += 1
+#     return messages_sum
 def send_messages(pp):
     i = 0
-    messages_sum = 0
+    messages = []
     while i <= N:
-        if random.choices([1, 0], [pp, 1 - pp])[0] == 1:
-            messages_sum += 1
+        if random.random() <= pp:
+            messages.append(1)
+        else:
+            messages.append(0)
         i += 1
+    messages_sum = sum(messages)
     return messages_sum
+
 
 
 while p <= (1/N):
