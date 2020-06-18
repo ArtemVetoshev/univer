@@ -7,25 +7,18 @@ p = 0.005
 probability_l = []
 loss = []
 
-
 def send_messages(pp):
-    i = 0
     messages = []
-    while i <= N:
-        if random.random() <= pp:
-            messages.append(1)
-        else:
-            messages.append(0)
-        i += 1
-    messages_sum = sum(messages)
-    return messages_sum
-
+    for i in range(N):
+        m = random.choices([1, 0], [pp, 1 - pp])
+        messages.append(m[0])
+    return sum(messages)
 
 while p <= (1/N):
     collision = 0
     _sum = 0
     probability_l.append(p)
-    for f_slot in range(M):
+    for frame in range(M):
         messages_sum = send_messages(p)
         # если отправили два сообщения одновременно
         if messages_sum > 1:

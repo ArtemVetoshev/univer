@@ -7,40 +7,24 @@ p = 0
 probability_l = []
 avg_T = []
 
-# def send_messages(pp):
-#     i = 0
-#     messages_sum = 0
-#     while i <= N:
-#         if random.choices([1, 0], [pp, 1 - pp])[0] == 1:
-#             messages_sum += 1
-#         i += 1
-#     return messages_sum
 def send_messages(pp):
-    i = 0
     messages = []
-    while i <= N:
-        if random.random() <= pp:
-            messages.append(1)
-        else:
-            messages.append(0)
-        i += 1
-    messages_sum = sum(messages)
-    return messages_sum
-
-
+    for i in range(N):
+        m = random.choices([1, 0], [pp, 1 - pp])
+        messages.append(m[0])
+    return sum(messages)
 
 while p <= (1/N):
-    sum_of_sum_messages = []
     awaiting = []
     probability_l.append(p)
-    for f_slot in range(M):
+    for frame in range(M):
         messages_sum = send_messages(p)
         if not awaiting:
             awaiting.append(0)
-        elif awaiting[f_slot - 1] <= 0:
+        elif awaiting[frame - 1] <= 0:
             awaiting.append(messages_sum)
         else:
-            awaiting.append((awaiting[f_slot - 1] - 1 + messages_sum))
+            awaiting.append((awaiting[frame - 1] - 1 + messages_sum))
     awaiting_sum = sum(awaiting)
     if not avg_T:
         avg_T.append(0)
